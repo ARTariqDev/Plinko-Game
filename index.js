@@ -2,6 +2,31 @@
 let selectedColor = '';
 let earnings = 3000;
 
+function plus() {
+    // Get the current bet value as a number
+    let currentBet = parseInt(document.getElementById('bet').value, 10);
+    
+    // Increment the bet by 1
+    currentBet++;
+    
+    // Update the input field with the new bet value
+    document.getElementById('bet').value = currentBet;
+}
+
+
+function minus() {
+
+    let currentBet = parseInt(document.getElementById('bet').value, 10);
+
+     if (currentBet > 0) {
+
+        currentBet--;
+
+     }
+
+    document.getElementById('bet').value = currentBet;
+}
+
 // Multiplier table for colors
 const multipliers = {
     green: [18, 3.2, 1.6, 1.3, 1.2, 1.1, 1, 0.5, 1, 1.1, 1.2, 1.3, 1.6, 3.2, 18],
@@ -89,7 +114,9 @@ function setupPlinkoBoard() {
             label.style.bottom = `${600 - y - 20}px`;
             label.style.width = `${SLOT_WIDTH}px`;
             label.style.textAlign = 'center';
-            label.style.color = color;
+            label.style.color = 'black';
+            label.style.backgroundColor = color;
+            label.style.border = 'solid black 0.1em'
             label.style.fontWeight = 'bold';
             label.style.fontSize = '12px';
             document.getElementById('plinkoCanvas').appendChild(label);
@@ -141,7 +168,7 @@ function dropBall(betAmount) {
 
                 document.getElementById('earnings-value').textContent = earnings;
                 document.getElementById('result').textContent = `Slot ${slotIndex + 1} | Multiplier: ${payout} | Winnings: $${winnings}`;
-                
+
                 // Remove the ball after collision
                 Composite.remove(engine.world, ballBody);
 

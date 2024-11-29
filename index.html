@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plinko Game</title>
+    <title>Plinko</title>
     <link rel="stylesheet" href="index.css" />
 </head>
 <body onload="selectColor('green')">
-    <h1>Plinko Game</h1>
-    <p>Bet:</p>
-    <input type="number" id="bet" value="0" />
-    <button id="plus" onclick="plus()">+</button>
-    <button id="minus" onclick="minus()">-</button>
-    <p>Select Color:</p>
-    <button id="green" onclick="selectColor('green')">Green</button>
-    <button id="yellow" onclick="selectColor('yellow')">Yellow</button>
-    <button id="red" onclick="selectColor('red')">Red</button>
-    <br><br>
-    <button id="start" onclick="startGame()">Start</button>
-    <p id="result"></p>
-    <p id="earnings">Earnings: $<span id="earnings-value">3000</span></p>
-    <div id="plinkoCanvas"></div>
+    <main>
+        <h1>Plinko</h1>
+        <h2>Bet:</h2>
+        <input type="number" id="bet" value="0" />
+        <button id="plus" onclick="plus()">+</button>
+        <button id="minus" onclick="minus()">-</button>
+        <h2>Select Color:</h2>
+        <button id="green" onclick="selectColor('green')">Green</button>
+        <button id="yellow" onclick="selectColor('yellow')">Yellow</button>
+        <button id="red" onclick="selectColor('red')">Red</button>
+        <br><br>
+        <button id="start" onclick="startGame()">Start</button>
+        <p id="result"></p>
+        <p id="earnings">Earnings: $<span id="earnings-value">3000</span></p>
+        <div id="plinkoCanvas"></div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
     <script src="index.js"></script>
