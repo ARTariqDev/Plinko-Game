@@ -141,11 +141,28 @@ function selectColor(color) {
 // Function to start the game
 function startGame() {
     const betAmount = parseInt(document.getElementById('bet').value, 10);
+    
+    // Deduct $10 for playing each time
+    if (earnings >= 10) {
+        earnings -= 10; 
+    } else {
+        alert('Not enough funds to play. Please add more earnings!');
+        return;
+    }
+
+    // Validate if a color is selected and a valid bet amount is entered
     if (!selectedColor || betAmount <= 0) {
         alert('Please select a color and enter a valid bet!');
         return;
     }
 
+    // Round the earnings to the nearest whole number
+    earnings = Math.round(earnings);
+
+    // Update the displayed earnings
+    document.getElementById('earnings-value').textContent = earnings;
+
+    // Start the ball drop with the selected bet amount
     dropBall(betAmount);
 }
 
@@ -171,7 +188,11 @@ function dropBall(betAmount) {
                 const slotIndex = slotBody.index; // Custom property to track the slot index
                 const payout = multipliers[selectedColor][slotIndex];
                 const winnings = betAmount * payout;
+
                 earnings += winnings;
+
+                // Round earnings to nearest whole number after winning
+                earnings = Math.round(earnings);
 
                 document.getElementById('earnings-value').textContent = earnings;
                 document.getElementById('result').textContent = `Slot ${slotIndex + 1} | Multiplier: ${payout} | Winnings: $${winnings}`;
@@ -194,20 +215,56 @@ function dropBall(betAmount) {
         }
     }, 5000); // 5 seconds to clear the ball in case it doesn't hit a slot
 
-    // Function to make the ball bounce off walls
+    // Function to make the ball bounce off walls and increase horizontal velocity
     const wallBounceHandler = () => {
         const ballVelocity = ball.velocity;
 
-        // Check for ball touching left or right wall
+        // Check if the ball is touching the left or right wall
         if (ball.position.x <= 10 || ball.position.x >= 390) {
-            // Reverse the x-velocity (bounce effect)
+            // Increase the horizontal velocity by a certain factor (e.g., 1.2x)
+            const increaseFactor = 8; // Adjust this value as needed
+
+            // Increase the x-velocity and reverse it (bounce effect)
+            const newXVelocity = ballVelocity.x * -increaseFactor;
+            const newYVelocity = ballVelocity.y;
+
+            // Set the new velocity to the ball
             Matter.Body.setVelocity(ball, {
-                x: -ballVelocity.x,
-                y: ballVelocity.y
+                x: newXVelocity,
+                y: newYVelocity
             });
         }
+
+        // Ensure ball never has a velocity of zero
+        if (Math.abs(ball.velocity.x) < 0.1 && Math.abs(ball.velocity.y) < 0.1) {
+            Matter.Body.setVelocity(ball, {
+                x: ball.velocity.x > 0 ? 0.1 : -0.1,
+                y: ball.velocity.y > 0 ? 0.1 : -0.1
+            });
+        }
+
+        // Collision with pegs and increase horizontal velocity
+        const pegHandler = (event) => {
+            event.pairs.forEach(pair => {
+                const { bodyA, bodyB } = pair;
+                const ballBody = bodyA.label === 'Ball' ? bodyA : bodyB.label === 'Ball' ? bodyB : null;
+                const pegBody = bodyA.label === 'circle' ? bodyA : bodyB.label === 'circle' ? bodyB : null;
+
+                if (ballBody && pegBody) {
+                    // Increase the horizontal velocity when touching a peg
+                    const ballVelocity = ballBody.velocity;
+                    const increaseFactor = 2; // Adjust as needed for bounce effect
+                    Matter.Body.setVelocity(ballBody, {
+                        x: ballVelocity.x * increaseFactor,
+                        y: ballVelocity.y
+                    });
+                }
+            });
+        };
+
+        Events.on(engine, 'collisionStart', pegHandler);
     };
 
-    // Continuously check for wall collisions and make the ball bounce
     setInterval(wallBounceHandler, 100);
 }
+
