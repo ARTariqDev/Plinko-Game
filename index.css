@@ -1,0 +1,26 @@
+/* index.css */
+
+#plinkoCanvas {
+    width: 400px;
+    height: 600px;
+    border: 1px solid #000;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#earnings {
+    margin-top: 20px;
+    font-size: 18px;
+}
