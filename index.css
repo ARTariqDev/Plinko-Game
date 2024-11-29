@@ -1,84 +1,144 @@
-/* index.css */
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #00aaff;
+    background-color: #f5f7fb; /* Light background for better contrast */
+    font-family: Arial, sans-serif;
+    color: #333; /* Darker text for better readability */
+    text-align: left;
+    padding: 20px;
 }
+
 main {
-    border-radius: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2em;
-    width: 50em;
-    color: white;
-    background-color: #00aaff;
-    -webkit-border-radius: 2em;
-    -moz-border-radius: 2em;
-    -ms-border-radius: 2em;
-    -o-border-radius: 2em;
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: flex-start;
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#controls-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align form elements */
+    width: 300px; /* Adjust width as needed */
+    margin-right: 20px; /* Space between form and canvas */
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 1em; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
 }
 
 #plinkoCanvas {
     width: 400px;
     height: 600px;
-    border: 1px solid #000;
-    margin: 20px auto;
+    border: 1px solid #ddd; /* Lighter border for the canvas */
     position: relative;
     overflow: hidden;
-}
-#green,#start {
-    border: none;
-    border-radius: 8em;
-    width: 5em;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-    background-color: green;
-    color: white;
-    -webkit-border-radius: 8em;
-    -moz-border-radius: 8em;
-    -ms-border-radius: 8em;
-    -o-border-radius: 8em;
-}
-
-#yellow {
-    border: none;
-    border-radius: 8em;
-    width: 5em;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-    background-color: yellow;
-    color: rgb(3, 28, 77);
-}
-
-#red,#plus,#minus {
-    border: none;
-    border-radius: 8em;
-    width: 5em;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-    background-color: red;
-    color: white;
-}
-
-#red:hover ,#green:hover,#yellow:hover {
-
-    color: #00aaff;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+    border-radius: 1em; /* Rounded corners */
+    background-color: #ffffff; /* White background */
 }
 
 button {
-    padding: 10px;
-    margin: 5px;
+    padding: 12px 20px;
+    margin: 8px 0;
     cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    transition: all 0.3s ease; /* Smooth transition for button effects */
 }
 
+button:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+/* Button colors */
+#green {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+#yellow {
+    background-color: #FFC107; /* Yellow */
+    color: #333;
+}
+
+#red {
+    background-color: #FF5733; /* Red */
+    color: white;
+}
+
+#start {
+    background-color: #2196F3; /* Blue for 'Start' */
+    color: white;
+}
+
+#plus, #minus {
+    background-color: #FF4081; /* Pink for Plus/Minus */
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+button:active {
+    transform: translateY(1px); /* Slight push down effect on click */
+    box-shadow: none; /* Remove shadow when active */
+}
+
+/* Input styles */
+input[type="number"] {
+    padding: 8px;
+    width: 120px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: #f5f7fb;
+    font-size: 16px;
+}
+
+/* Highlighted Text */
+h1, h2 {
+    color: #333; /* Darker text for titles */
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Earnings section */
 #earnings {
     margin-top: 20px;
     font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+#earnings-value {
+    color: #4CAF50; /* Green for earnings */
+}
+
+/* Spacing between form elements */
+#controls-form p {
+    margin-top: 10px;
+}
+
+/* Make buttons consistent */
+#green, #yellow, #red, #start, #plus, #minus {
+    width: 100%; /* Buttons take full width of the form */
+}
+
+/* Minor adjustments to input buttons */
+#plus, #minus {
+    width: 50px;
+}
+
+#controls-form button {
+    width: 100%;
 }

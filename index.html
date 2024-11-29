@@ -8,19 +8,24 @@
 </head>
 <body onload="selectColor('green')">
     <main>
-        <h1>Plinko</h1>
-        <h2>Bet:</h2>
-        <input type="number" id="bet" value="0" />
-        <button id="plus" onclick="plus()">+</button>
-        <button id="minus" onclick="minus()">-</button>
-        <h2>Select Color:</h2>
-        <button id="green" onclick="selectColor('green')">Green</button>
-        <button id="yellow" onclick="selectColor('yellow')">Yellow</button>
-        <button id="red" onclick="selectColor('red')">Red</button>
-        <br><br>
-        <button id="start" onclick="startGame()">Start</button>
-        <p id="result"></p>
-        <p id="earnings">Earnings: $<span id="earnings-value">3000</span></p>
+        <!-- Form for controls -->
+        <form id="controls-form">
+            <h1>Plinko</h1>
+            <h2>Bet:</h2>
+            <input type="number" id="bet" value="0" />
+            <button type="button" id="plus">+</button>
+            <button type="button" id="minus">-</button>
+            <h2>Select Color:</h2>
+            <button type="button" id="green" onclick="selectColor('green')">Green</button>
+            <button type="button" id="yellow" onclick="selectColor('yellow')">Yellow</button>
+            <button type="button" id="red" onclick="selectColor('red')">Red</button>
+            <br><br>
+            <button type="button" id="start" onclick="startGame()">Start</button>
+            <p id="result"></p>
+            <p id="earnings">Earnings: $<span id="earnings-value">3000</span></p>
+        </form>
+
+        <!-- Plinko canvas -->
         <div id="plinkoCanvas"></div>
     </main>
 

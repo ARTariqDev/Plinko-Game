@@ -2,30 +2,37 @@
 let selectedColor = '';
 let earnings = 3000;
 
-function plus() {
-    // Get the current bet value as a number
-    let currentBet = parseInt(document.getElementById('bet').value, 10);
-    
-    // Increment the bet by 1
-    currentBet++;
-    
-    // Update the input field with the new bet value
-    document.getElementById('bet').value = currentBet;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the input element and buttons
+    const betInput = document.getElementById('bet');
+    const plusButton = document.getElementById('plus');
+    const minusButton = document.getElementById('minus');
 
+    // Define the plus and minus functions
+    function plus() {
+        let currentBet = parseInt(betInput.value, 10);
+        if (isNaN(currentBet)) {
+            currentBet = 0;
+        }
+        currentBet++;
+        betInput.value = currentBet;
+    }
 
-function minus() {
+    function minus() {
+        let currentBet = parseInt(betInput.value, 10);
+        if (isNaN(currentBet)) {
+            currentBet = 0;
+        }
+        if (currentBet > 0) {
+            currentBet--;
+        }
+        betInput.value = currentBet;
+    }
 
-    let currentBet = parseInt(document.getElementById('bet').value, 10);
-
-     if (currentBet > 0) {
-
-        currentBet--;
-
-     }
-
-    document.getElementById('bet').value = currentBet;
-}
+    // Attach event listeners to buttons
+    plusButton.addEventListener('click', plus);
+    minusButton.addEventListener('click', minus);
+});
 
 // Multiplier table for colors
 const multipliers = {
@@ -186,4 +193,21 @@ function dropBall(betAmount) {
             Composite.remove(engine.world, ball);
         }
     }, 5000); // 5 seconds to clear the ball in case it doesn't hit a slot
+
+    // Function to make the ball bounce off walls
+    const wallBounceHandler = () => {
+        const ballVelocity = ball.velocity;
+
+        // Check for ball touching left or right wall
+        if (ball.position.x <= 10 || ball.position.x >= 390) {
+            // Reverse the x-velocity (bounce effect)
+            Matter.Body.setVelocity(ball, {
+                x: -ballVelocity.x,
+                y: ballVelocity.y
+            });
+        }
+    };
+
+    // Continuously check for wall collisions and make the ball bounce
+    setInterval(wallBounceHandler, 100);
 }
