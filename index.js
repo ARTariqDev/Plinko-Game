@@ -143,8 +143,8 @@ function startGame() {
     const betAmount = parseInt(document.getElementById('bet').value, 10);
     
     // Deduct $10 for playing each time
-    if (earnings >= 10) {
-        earnings -= 10; 
+    if (earnings >= betAmount) {
+        earnings -= betAmount;
     } else {
         alert('Not enough funds to play. Please add more earnings!');
         return;
