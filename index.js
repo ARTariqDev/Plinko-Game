@@ -222,7 +222,7 @@ function dropBall(betAmount) {
         // Check if the ball is touching the left or right wall
         if (ball.position.x <= 10 || ball.position.x >= 390) {
             // Increase the horizontal velocity by a certain factor (e.g., 1.2x)
-            const increaseFactor = 8; // Adjust this value as needed
+            const increaseFactor = 3; // Adjust this value as needed
 
             // Increase the x-velocity and reverse it (bounce effect)
             const newXVelocity = ballVelocity.x * -increaseFactor;
